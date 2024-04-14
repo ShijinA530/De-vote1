@@ -8,7 +8,7 @@ function Candidate() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/candidate');
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URI}/candidate`);
         if (!response.ok) {
           throw new Error('Failed to fetch candidate data');
         }

@@ -17,7 +17,7 @@ function POLogin() {
     const user = { email,password };
 
     try {
-      const response = await fetch(`http://localhost:3000/po-login`, { // change this when hosting
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URI}/po-login`, { // change this when hosting
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)

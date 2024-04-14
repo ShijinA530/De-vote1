@@ -19,7 +19,7 @@ function Voter() {
       console.log(jsonData);
 
       try {
-        const response = await fetch('http://localhost:3000/voter-add', {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URI}/voter-add`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

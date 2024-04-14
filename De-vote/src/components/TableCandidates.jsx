@@ -43,7 +43,7 @@ function TableCandidates({ data, columns }) {
         candidateID: candidateID
       };
   
-      const response = await fetch(`http://localhost:3000/candidate-delete`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URI}/candidate-delete`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
