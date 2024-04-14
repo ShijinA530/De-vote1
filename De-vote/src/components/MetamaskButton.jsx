@@ -10,11 +10,14 @@ function MetamaskButton() {
   const [contract, setContract] = useState(null);
   const { updateContract, updateAccount } = useContext(ContractContext);
 
-  async function init() {
+  async function init(web3) {
     try {
-      const web3 = new Web3(Web3.givenProvider || "http://127.0.0.1:7545");
+      // console.log(Web3.givenProvider)
+      // const web3 = new Web3(Web3.givenProvider);
       const networkID = await web3.eth.net.getId();
+      console.log(networkID)
       const contractAddress = configuration.networks[networkID].address;
+      console.log(contract)
       const contractABI = configuration.abi;
 
       const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
@@ -29,13 +32,13 @@ function MetamaskButton() {
     }
   }
 
-  useEffect(() => {
-    init();
-    return () => {
-      // Cleanup event listener
-      window.ethereum.removeListener("accountsChanged", handleAccountsChanged);
-    };
-  }, []);
+  // useEffect(() => {
+  //   init();
+  //   return () => {
+  //     // Cleanup event listener
+  //     window.ethereum.removeListener("accountsChanged", handleAccountsChanged);
+  //   };
+  // }, []);
 
   const handleAccountsChanged = async (accounts) => {
     if (accounts.length > 0) {
@@ -51,11 +54,14 @@ function MetamaskButton() {
       if (typeof provider !== "undefined") {
         await provider.request({ method: "eth_requestAccounts" });
         const web3 = new Web3(window.ethereum);
+
         const accounts = await web3.eth.getAccounts();
         const account = accounts[0];
         updateAccount(account);
         console.log("Connected account:", account);
         alert("connected to metamask")
+        init(web3)
+        
       } else {
         console.log("Non-ethereum browser detected. Please install Metamask.");
       }

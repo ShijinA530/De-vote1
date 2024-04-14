@@ -14,7 +14,7 @@ function Elections() {
   useEffect(() => {
     async function fetchElectionTypes() {
       try {
-        const response = await fetch('http://localhost:3000/election');
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URI}/election`);
         if (!response.ok) {
           throw new Error('Failed to fetch election types');
         }
@@ -40,7 +40,7 @@ function Elections() {
   }
   const fetchCandidates = async () => {
     try {
-      const response = await fetch('http://localhost:3000/election', {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URI}/election`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
