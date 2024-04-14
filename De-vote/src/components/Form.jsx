@@ -19,7 +19,7 @@ function Form() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/candidate', {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URI}/candidate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

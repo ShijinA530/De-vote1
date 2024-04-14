@@ -20,7 +20,7 @@ function Cover() {
 
     try {
       console.log(JSON.stringify(user)); // Add this line before the fetch call
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URI}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)

@@ -19,7 +19,7 @@ function Table({ columns }) {
 
   const fetchData = async () => {
       try {
-          const response = await fetch('http://localhost:3000/voter');
+          const response = await fetch(`${import.meta.env.VITE_SERVER_URI}/voter`);
           if (!response.ok) {
               throw new Error('Failed to fetch data');
           }

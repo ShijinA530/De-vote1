@@ -8,7 +8,7 @@ export const useLogin=()=>{
     const login=async(id,password)=>{
         setIsLoading(true)
         setError(null)
-        const response=await fetch(`${process.env.REACT_APP_SERVER_URI}/api/user/login`,
+        const response=await fetch(`${process.env.VITE_SERVER_URI}/api/user/login`,
         {
             method:'POST',
             headers:{'Content-Type':'application/json'},

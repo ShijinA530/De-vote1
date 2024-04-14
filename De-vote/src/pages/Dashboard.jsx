@@ -10,7 +10,7 @@ function Dashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('http://localhost:3000/dashboard'); // Adjust this URL to your API endpoint
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URI}/dashboard`); // Adjust this URL to your API endpoint
         if (!response.ok) throw new Error('Network response was not ok');
         const result = await response.json();
         setData({
