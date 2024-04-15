@@ -16,6 +16,7 @@ function MetamaskButton() {
       // const web3 = new Web3(Web3.givenProvider);
       const networkID = await web3.eth.net.getId();
       console.log(networkID)
+      console.log(configuration.networks[networkID].address)
       const contractAddress = configuration.networks[networkID].address;
       console.log(contract)
       const contractABI = configuration.abi;
