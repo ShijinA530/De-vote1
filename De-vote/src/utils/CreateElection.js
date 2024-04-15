@@ -17,6 +17,7 @@ const creatElection = async (account,contract,postNames, candidateNames) => {
       }) // Replace with your actual address
       .then((result) => {
         console.log("Election created successfully:", result);
+        alert("Election created successfully")
         // Handle the result or perform additional actions
       })
       .catch((error) => {
