@@ -33,11 +33,9 @@ function Dashboard() {
   return (
     <>
       <div className='flex flex-row-reverse mr-[8%]'><MetamaskButton/></div>
-      <div className='max-w-[650px] mx-auto my-[8%] py-5 px-8 bg-blue-200 rounded-lg flex flex-wrap justify-around'>
+      <div className='max-w-[700px] mx-auto my-[8%] py-5 px-8 bg-blue-200 rounded-lg flex flex-wrap justify-around'>
         <DashCard cardname={'Active Elections'} data={data.totalElections}/>
-        <DashCard cardname={'Total Elections'} data={data.totalElections}/>
         <DashCard cardname={'Registered Voters'} data={data.registeredVoters}/>
-        <DashCard cardname={'Election Types'} data={data.electionTypes}/>
       </div>
     </>
   );
