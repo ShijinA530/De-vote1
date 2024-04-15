@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 function Header({ userType }) {
   // Function to decide which links to render based on the user type
@@ -54,6 +55,9 @@ function Header({ userType }) {
     }
   };
 
+
+  const {logout} = useAuthContext()
+
   // Helper function to determine nav link style based on isActive
   const navLinkStyle = (isActive) =>
     `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100
@@ -69,7 +73,7 @@ function Header({ userType }) {
           </Link>
           <div className="flex items-center lg:order-2">
             <Link
-              to="/"
+              to="/" onClick={()=>logout()}
               className="text-gray-800 bg-indigo-100 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
             >
               Log Out
