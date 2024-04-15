@@ -11,36 +11,41 @@ function POLogin() {
 
   const {login} = useAuthContext()
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const user = { email,password };
+    const user = { email, password };
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URI}/po-login`, { // change this when hosting
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-      });
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URI}/po-login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(user)
+        });
 
-      
+        if (response.ok) {
+            const data = await response.json(); // Extract the JSON payload from the response
+            console.log('Login successful', data);
 
-      if (response.ok) {
-        const data = await response.json(); // Extract the JSON payload from the response
-      console.log(data)  
-        console.log('Registration successful');
-
-        
-        login(data)
-        navigate('/dashboard');
-        // Perform any actions after successful registration, e.g., redirect to login page
-      } else {
-        console.log('Failed to register123', response);
-      }
+            // Assuming the 'login' function updates the application state and redirects
+            login(data);
+            navigate('/dashboard');
+        } else {
+            console.error('Failed to login. Status:', response.status);
+            if (response.status === 400) {
+                alert('Invalid email or password. Please try again.');
+            } else {
+                // Generic error for other statuses
+                alert('An error occurred. Please try again later.');
+            }
+        }
     } catch (error) {
-      console.error('Failed to register', error);
+        console.error('Failed to connect to the server:', error);
+        alert('Failed to connect to the server. Please check your connection and try again.');
     }
-  };
+};
+
 
   return (
     <div className='registerpage'>
