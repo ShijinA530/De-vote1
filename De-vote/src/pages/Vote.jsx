@@ -9,7 +9,7 @@ function Vote() {
   
   useEffect(() => {
     // Fetch candidate data from backend when component mounts
-    fetch('http://localhost:3000/all-candidate') // Assuming '/api/candidates' is the endpoint to fetch candidate data
+    fetch(`${import.meta.env.VITE_SERVER_URI}/all-candidate`) // Assuming '/api/candidates' is the endpoint to fetch candidate data
       .then(response => response.json())
       .then(data => {
         setCandidatesData(data);

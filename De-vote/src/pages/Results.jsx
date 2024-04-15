@@ -9,7 +9,7 @@ function Results() {
     // Function to fetch data
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/all-candidate'); // Replace 'YOUR_API_ENDPOINT' with your actual API endpoint
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URI}/all-candidate`); // Replace 'YOUR_API_ENDPOINT' with your actual API endpoint
         const data = await response.json();
         setPostData(data);
       } catch (error) {
