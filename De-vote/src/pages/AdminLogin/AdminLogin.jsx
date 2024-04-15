@@ -15,7 +15,6 @@ function AdminLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    // Assuming adminId and password are correctly defined in your component's state
     const adminData = { email: adminId, password: password };
   
     try {
@@ -28,21 +27,25 @@ function AdminLogin() {
       });
   
       if (!response.ok) {
+        if (response.status === 400) {
+          // Handle 401 Unauthorized response
+          alert('Incorrect email or password. Please try again.');
+        } else {
+          // Handle other kinds of errors
+          alert('Login failed. Please try again later.');
+        }
         throw new Error('Failed to login as admin');
       }
   
-      const data = await response.json(); // Extract the JSON payload from the response
-      console.log(data)
-      // Assuming you have a context or some state management to update
-      // Replace `login` with however you're managing state; for example, through a context provider
-      login(data); // Make sure `login` is ready to handle this object, including the token and userType
-  
-      navigate('/dashboard'); // Make sure `navigate` is defined, usually via `useNavigate` from react-router-dom
+      const data = await response.json();
+      console.log(data);
+      login(data);
+      navigate('/dashboard');
     } catch (error) {
       console.error('Error logging in as admin:', error.message);
-      // Here, handle displaying the error to the user
     }
   };
+  
   
 
   return (
