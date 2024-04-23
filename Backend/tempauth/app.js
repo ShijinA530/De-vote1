@@ -10,11 +10,11 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-// CORS configuration to allow multiple origins and handle preflight requests
-const allowedOrigins = ['http://localhost:5173', 'https://de-vote1.vercel.app'];
-app.use(cors({
-  origin: 'https://de-vote1.vercel.app' // specify the origin of your frontend
-}));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://de-vote1.vercel.app");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // Database connection
 mongoose.connect('mongodb+srv://temp:temp123@jwt-auth.iow4rvc.mongodb.net/De-vote')
