@@ -4,7 +4,7 @@ const creatElection = async (account,contract,postNames, candidateNames) => {
     console.log(`account:${account}`)
     console.log('printing contract')
     console.log(contract)
-    const durationInMinutes = 120;
+    const durationInMinutes = 160;
     console.log("hello1");
     
      account ? console.log(account) : console.log('not found')
