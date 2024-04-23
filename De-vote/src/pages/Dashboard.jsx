@@ -34,7 +34,7 @@ function Dashboard() {
     <>
       <div className='flex flex-row-reverse mr-[8%]'><MetamaskButton/></div>
       <div className='max-w-[700px] mx-auto my-[8%] py-5 px-8 bg-blue-200 rounded-lg flex flex-wrap justify-around'>
-        <DashCard cardname={'Active Elections'} data={data.totalElections}/>
+        <DashCard cardname={'Active Elections'} data={data.electionTypes}/>
         <DashCard cardname={'Registered Voters'} data={data.registeredVoters}/>
       </div>
     </>
